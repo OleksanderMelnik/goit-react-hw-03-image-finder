@@ -3,7 +3,6 @@ import FetchGallery from './api';
 import {Searchbar} from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 
-
 const fetchGallery = new FetchGallery();
 
 export class App extends Component {
@@ -12,7 +11,6 @@ export class App extends Component {
     galleryItems: [],
     galleryPage: 1,
     isloading: false,
-
   };
 
   async componentDidUpdate(prevProps, prevState) {
@@ -63,7 +61,6 @@ export class App extends Component {
   handleFormSubmit = searchQuery => {
     this.setState({ searchQuery });
   };
-
 
   render() {
     const { galleryItems } = this.state;
