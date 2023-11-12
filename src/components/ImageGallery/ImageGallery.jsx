@@ -1,7 +1,5 @@
 import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
 
-
-
 export const ImageGallery = ({ galleryItems }) => {
   return (
     <ul>
