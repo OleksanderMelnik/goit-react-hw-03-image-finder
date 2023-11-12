@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { toast } from 'react-toastify';
+import { SearchbarHeader, Form, Button, Input } from './Searchbar.styled';
 
 export class Searchbar extends Component {
   state = {
@@ -12,7 +14,11 @@ export class Searchbar extends Component {
   handleSubmit = e => {
     const searchQuery = this.state.searchQuery.trim();
     e.preventDefault();
-
+    
+    if (searchQuery.trim() === '') {
+      toast.info('Please, enter search word!');
+      return;
+    }
     this.props.onSubmit(searchQuery);
     this.setState({ searchQuery: '' });
   };
@@ -20,12 +26,12 @@ export class Searchbar extends Component {
   render() {
     const { searchQuery } = this.state;
     return (
-      <header className="searchbar">
-        <form className="form" onSubmit={this.handleSubmit}>
-          <input
+      <SearchbarHeader className="searchbar">
+        <Form className="form" onSubmit={this.handleSubmit}>
+          <Input
             className="input"
             type="text"
-            // autocomplete="off"
+            autocomplete="off"
             autoFocus
             placeholder="Search images and photos"
             name="searchQuery"
@@ -33,11 +39,11 @@ export class Searchbar extends Component {
             onChange={this.handleQueryChange}
           />
 
-          <button type="submit" className="button">
+          <Button type="submit" className="button">
             <span className="button-label">Search</span>
-          </button>
-        </form>
-      </header>
+          </Button>
+        </Form>
+      </SearchbarHeader>
     );
   }
 }
