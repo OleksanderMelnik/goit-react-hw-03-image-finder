@@ -13,8 +13,8 @@ export class App extends Component {
     galleryItems: [],
     searchQuery: '',
     galleryPage: 1,
-    error: false,
-    isLoading: false,
+    error: null,
+    Loading: false,
     isButtonShow: false,
     largeImageURL: '',
     tags: '',
@@ -33,7 +33,7 @@ export class App extends Component {
 
   fetchGallery = async () => {
     const { searchQuery, galleryPage } = this.state;
-    this.setState({ isLoading: true });
+    this.setState({ Loading: true });
     
     try {
       const { hits, totalHits } = await fetchImage(searchQuery, galleryPage); 
@@ -45,7 +45,7 @@ export class App extends Component {
     
       const newImages = renderValues(hits);
       this.setState(({  galleryItems }) => ({
-        galleryItems: [... galleryItems, ...newImages],
+        galleryItems: [...galleryItems, ...newImages],
         isButtonShow: this.state.galleryPage < Math.ceil(totalHits / 12 ),
         totalHits,     
       })
@@ -54,7 +54,7 @@ export class App extends Component {
       this.setState({ error });
       toast.error('Oops!!! Something went wrong');
     } finally {
-      this.setState({ isLoading: false });
+      this.setState({ Loading: false });
     }
   };
 
@@ -70,15 +70,14 @@ export class App extends Component {
 
   render() {
 
-    const { galleryItems, isloading, isButtonShow, error } = this.state;
+    const { galleryItems, loading, isButtonShow, error } = this.state;
 
     return (
       <AppDiv>
         <Searchbar onSubmit={this.handleFormSubmit} />
-        
         {error && <h2>Please enter a word to search!</h2>}
         {!error && <ImageGallery galleryItems={galleryItems} />}
-        {isloading && <Loader />}
+        {loading && <Loader />}
         {isButtonShow && <Button onClick={this.onLoadMore} />}
         <ToastContainer autoClose={1000} theme="light"/>
       </AppDiv>
