@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { fetchImages, renderValues } from './api';
+import { fetchGallery, renderValues } from './api';
 import {Searchbar} from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from "./Button/Button";
@@ -37,7 +37,7 @@ export class App extends Component {
     this.setState({ isLoading: true });
     
     try {
-      const { hits, totalHits } = await fetchImages(searchQuery, galleryPage); 
+      const { hits, totalHits } = await fetchGallery(searchQuery, galleryPage); 
       if (totalHits === 0) {
         toast.warn(
           'Sorry, but we have not found anything. Please change your search query.'
