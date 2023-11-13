@@ -8,7 +8,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppDiv} from './App.styled';
 
-
 export class App extends Component {
   state = {
     galleryItems: [],
