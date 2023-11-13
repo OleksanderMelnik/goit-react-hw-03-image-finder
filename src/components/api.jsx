@@ -10,7 +10,7 @@ axios.defaults.params = {
   per_page: 12,
 };
 
-export const  fetchGallery = async (searchQuery, galleryPage) => {
+export const  fetchImage = async (searchQuery, galleryPage) => {
   const response = await axios.get(`?q=${searchQuery}&page=${galleryPage}`);
   return response.data;
 };
