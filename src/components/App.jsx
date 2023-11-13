@@ -69,6 +69,7 @@ export class App extends Component {
   };
 
   render() {
+    
     const { galleryItems, isloading, isButtonShow, error } = this.state;
 
     return (
