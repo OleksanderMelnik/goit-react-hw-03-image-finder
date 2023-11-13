@@ -69,12 +69,13 @@ export class App extends Component {
   };
 
   render() {
-    
+
     const { galleryItems, isloading, isButtonShow, error } = this.state;
 
     return (
       <AppDiv>
         <Searchbar onSubmit={this.handleFormSubmit} />
+        
         {error && <h2>Please enter a word to search!</h2>}
         {!error && <ImageGallery galleryItems={galleryItems} />}
         {isloading && <Loader />}
