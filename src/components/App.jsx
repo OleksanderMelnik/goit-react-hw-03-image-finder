@@ -53,7 +53,7 @@ export class App extends Component {
       );    
     } catch (error) {
       this.setState({ error });
-      toast.error('Oops... Something went wrong');
+      toast.error('Oops!!! Something went wrong');
     } finally {
       this.setState({ isLoading: false });
     }
